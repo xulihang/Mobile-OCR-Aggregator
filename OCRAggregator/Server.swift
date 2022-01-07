@@ -12,7 +12,7 @@ import SwiftyJSON
 class Server:ObservableObject{
     private var webServer:GCDWebServer
     private var reader:Aggregator! = nil
-    @Published var currentImage:UIImage = UIImage(named: "DMX1a")!
+    @Published var currentImage:UIImage = UIImage(named: "mrz")!
     @Published var resultsString:String = ""
     init(){
         webServer = GCDWebServer()
