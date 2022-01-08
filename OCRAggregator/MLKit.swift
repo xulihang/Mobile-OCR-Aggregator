@@ -25,12 +25,15 @@ class MLKit:Reader{
         visionImage.orientation = image.imageOrientation
         do{
             let result = try await textRecognizer.process(visionImage)
+            var index:Int = 0
             for block:TextBlock in result.blocks{
                 for line:TextLine in block.lines{
                     let subDic = NSMutableDictionary()
                     subDic.setObject(line.text, forKey: "text" as NSCopying)
+                    subDic.setObject(index, forKey: "block" as NSCopying)
                     outResults.add(subDic)
                 }
+                index = index + 1
             }
         }catch{
             print(error)
