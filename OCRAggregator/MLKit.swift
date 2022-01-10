@@ -27,10 +27,18 @@ class MLKit:Reader{
             let result = try await textRecognizer.process(visionImage)
             var index:Int = 0
             for block:TextBlock in result.blocks{
-                for line:TextLine in block.lines{
+                for line:TextLine in block.lines {
                     let subDic = NSMutableDictionary()
                     subDic.setObject(line.text, forKey: "text" as NSCopying)
                     subDic.setObject(index, forKey: "block" as NSCopying)
+                    subDic.setObject(line.cornerPoints[0].cgPointValue.x, forKey: "x1" as NSCopying)
+                    subDic.setObject(line.cornerPoints[0].cgPointValue.y, forKey: "y1" as NSCopying)
+                    subDic.setObject(line.cornerPoints[1].cgPointValue.x, forKey: "x2" as NSCopying)
+                    subDic.setObject(line.cornerPoints[1].cgPointValue.y, forKey: "y2" as NSCopying)
+                    subDic.setObject(line.cornerPoints[2].cgPointValue.x, forKey: "x3" as NSCopying)
+                    subDic.setObject(line.cornerPoints[2].cgPointValue.y, forKey: "y3" as NSCopying)
+                    subDic.setObject(line.cornerPoints[3].cgPointValue.x, forKey: "x4" as NSCopying)
+                    subDic.setObject(line.cornerPoints[3].cgPointValue.y, forKey: "y4" as NSCopying)
                     outResults.add(subDic)
                 }
                 index = index + 1
